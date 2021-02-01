@@ -1,0 +1,195 @@
+@import 'reset-css';
+@import './variables.scss';
+@import './base.scss';
+@import './loader.scss';
+
+button {
+  @extend .flex;
+  height: $button-size;
+  border-radius: $button-border-size;
+  border: 1px solid $button-border;
+  background: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:disabled {
+    cursor: progress;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  img {
+    width: 85%;
+    height: 85%;
+    display: block;
+    margin: auto;
+  }
+}
+
+.btn-round {
+  @extend button, .round;
+}
+
+.btn-emoji {
+  @extend button;
+  padding: 0 10px;
+  font-size: 14px;
+  margin-right: 5px;
+  background: white;
+
+  &.selected {
+    background: $button-active-background;
+    border-color: $button-active-border;
+  }
+  .count {
+    margin-left: 8px;
+  }
+}
+
+.emoji-list {
+  @extend .flex;
+  min-width: 50px;
+  padding: 0 20px;
+  height: 32px;
+  border-radius: 24px;
+  box-shadow: 0 0 5px $button-border;
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: 5px;
+
+  button {
+    border: none;
+    padding: 0;
+    font: inherit;
+  }
+  
+  > .emoji-container {
+    
+    > .tooltip {
+      display: none;
+      bottom: 100%;
+      margin-bottom: 20px;
+    }
+
+    &:hover {
+      > .emoji {
+        transform: scale($emoji-zoom);
+        transform-origin: bottom;
+        transition: transform 0.2s;
+      }
+      > .tooltip {
+        display: block;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-right: 16px
+    }
+  }
+}
+
+.emoji-tab {
+  @extend .flex;
+
+  &.emoji-tab::after {
+    content: " \2219 ";
+    margin-left: 6px;
+    font-weight: bold;
+  }
+  + .count {
+    margin-left: 8px;
+  }
+}
+
+.tooltip {
+  position: absolute;
+  background: #161616;
+  border-radius: 2px;
+  padding: 12px 16px;
+  font-size: 12px;
+  color: white;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #161616 transparent transparent transparent;
+  }
+}
+
+#summary {
+  left: 0;
+  font-size: 14px;
+  position: absolute;
+  background: white;
+  transform: translateX(-100%);
+  // margin-left: -5px;
+  box-shadow: 0 0 5px $button-border;
+  border-radius: 2px;
+  z-index: 100;
+
+  h3 {
+    padding: 16px 16px 3px 16px;
+  }
+
+  .tab-list {
+    @extend .flex;
+    align-items: inherit !important;
+    height: $tab-height;
+    border-bottom: 1px solid $button-border;
+
+    li {
+      @extend .flex;
+      padding: 0 16px;
+      &.active {
+        border-bottom: 2px solid $button-active-border;
+      }
+    }
+  }
+  .scroll-list {
+    height: $summary-details-height;
+    overflow-y: auto;
+
+    li {
+      @extend .flex;
+      justify-content: flex-start !important;
+      margin: 16px;
+    }
+
+    .emoji {
+      margin: 0 8px;
+    }
+  }
+}
+
+.round {
+  width: $button-size;
+  height: $button-size;
+  border-radius: $button-size;
+}
+
+.slide-up{
+  &-enter {
+    transform: translateY(100%);
+    opacity: 0;
+    &-active {
+      opacity: 1;
+      transform: translateY(0%);
+      pointer-events: none;
+      transition: all 200ms;
+    }
+  }
+  &-exit {
+    opacity: 1;
+    transform: translateY(0%);
+    &-active {
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 200ms;
+    }
+  }
+}

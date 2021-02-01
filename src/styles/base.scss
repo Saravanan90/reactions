@@ -1,0 +1,34 @@
+.text {
+  &-center {
+    text-align: center;
+  }
+}
+
+.pos {
+  &-relative {
+    position: relative;
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &-end {
+    @extend .flex;
+    justify-content: flex-end;
+  }
+}
+
+.align {
+  &-unset {
+    align-items: unset;
+  }
+}
+
+.min-width {
+  &-50 {
+    min-width: 50px;
+  }
+}
