@@ -46,6 +46,12 @@ button {
   }
 }
 
+.emoji {
+  width: $emoji-size;
+  height: $emoji-size;
+  line-height: $emoji-size + 2;
+}
+
 .emoji-list {
   @extend .flex;
   min-width: 50px;
@@ -93,11 +99,11 @@ button {
 
   &.emoji-tab::after {
     content: " \2219 ";
-    margin-left: 6px;
+    margin-left: 2px;
     font-weight: bold;
   }
   + .count {
-    margin-left: 8px;
+    margin-left: 10px;
   }
 }
 
